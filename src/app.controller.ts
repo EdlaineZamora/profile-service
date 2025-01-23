@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Query, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query, NotFoundException, BadRequestException } from '@nestjs/common';
 
 @Controller('api/v1/pessoas')
 export class AppController {
@@ -7,15 +7,15 @@ export class AppController {
   constructor() {}
 
   @Get()
-  getAllPessoas(@Query('email') email?: string): any {
+  getAllOrFilteredPessoas(@Query('email') email?: string): any {
     if (email) {
       const pessoa = this.pessoas.find((p) => p.email === email);
       if (!pessoa) {
         throw new NotFoundException('Pessoa não encontrada');
       }
-      return pessoa;
+      return pessoa; // Retorna apenas a pessoa encontrada
     }
-    return this.pessoas;
+    return this.pessoas; // Retorna todas as pessoas se nenhum email for informado
   }
 
   @Post()
@@ -38,15 +38,5 @@ export class AppController {
       message: 'Pessoa cadastrada com sucesso!',
       novaPessoa,
     };
-  }
-
-  @Get(':email')
-  getPessoaByEmail(@Param('email') email: string): any {
-    const pessoa = this.pessoas.find((p) => p.email === email);
-
-    if (!pessoa) {
-      throw new NotFoundException('Pessoa não encontrada');
-    }
-    return pessoa;
   }
 }
