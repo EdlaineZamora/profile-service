@@ -16,7 +16,6 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
@@ -43,10 +42,6 @@
     "prettier": "^3.5.3",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
-    "ts-jest": "^29.2.6",
-    "ts-loader": "^9.5.2",
-    "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.8.2"
   },
   "jest": {
@@ -72,5 +67,9 @@
     "semi": false,
     "tabWidth": 2,
     "parser": "flow"
-  }
+  },
+  "engines": {
+    "node": "23.9.0"
+  },
+  "engine-strict": true
 }
