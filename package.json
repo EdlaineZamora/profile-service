@@ -69,7 +69,7 @@
     "parser": "flow"
   },
   "engines": {
-    "node": "23.9.0"
+    "node": "22.14.0"
   },
   "engine-strict": true
 }
