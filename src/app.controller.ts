@@ -1,11 +1,19 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Post, BadRequestException } from '@nestjs/common';
+import { EmailService } from './email.service';
 
-@Controller()
+@Controller('api/v1/formulario')
 export class AppController {
-  constructor() {}
+  constructor(private readonly emailService: EmailService) {}
 
-  @Get()
-  getHello(): string {
-    return 'Hello'
+  @Post()
+  async enviarFormulario(@Body() payload: any): Promise<any> {
+    const { nome, email, assunto, mensagem } = payload;
+
+    try {
+      const resultado = await this.emailService.sendEmail(nome, email, assunto, mensagem);
+      return { mensagem: resultado };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 }
