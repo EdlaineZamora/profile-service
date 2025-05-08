@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post, Query, NotFoundException, BadRequestException } from '@nestjs/common';
-import { EmailService } from './services/email.service';
+import { EmailService } from './email.service';
 
 @Controller('api/v1')
 export class AppController {
