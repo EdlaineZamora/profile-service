@@ -18,14 +18,14 @@ export class EmailService {
     });
   }
 
-  async sendEmail(nome: string, email: string, assunto: string, mensagem: string): Promise<string> {
-    if (!nome || !email || !assunto || !mensagem) {
+  async sendEmail(nome: string, email: string, assunto: string, mensagem: string, destino: string): Promise<string> {
+    if (!nome || !email || !assunto || !mensagem || !destino) {
       throw new Error('Todos os campos são obrigatórios!');
     }
 
     const mailOptions = {
       from: process.env.EMAIL_USER,
-      to: 'grazielaketyprogramer@gmail.com',
+      to: destino,
       subject: `Assunto do formulário: ${assunto || 'Sem Assunto'}`,
       text: `Nome: ${nome}\nE-mail: ${email}\n\nMensagem:\n${mensagem}`,
     };

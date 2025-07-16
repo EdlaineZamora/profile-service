@@ -9,10 +9,10 @@ export class AppController {
 
   @Post('formulario')
   async enviarFormulario(@Body() payload: any): Promise<any> {
-    const { nome, email, assunto, mensagem } = payload;
+    const { nome, email, assunto, mensagem, destino } = payload;
 
     try {
-      const resultado = await this.emailService.sendEmail(nome, email, assunto, mensagem);
+      const resultado = await this.emailService.sendEmail(nome, email, assunto, mensagem, destino);
       return { mensagem: resultado };
     } catch (error) {
       throw new BadRequestException(error.message);
